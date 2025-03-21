@@ -1,4 +1,4 @@
-require("dotenv");
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { OpenAI } = require("openai");
@@ -8,7 +8,7 @@ const port =  5000;
 app.use(cors());
 app.use(express.json());
 
-const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY});
 
 app.post("/process-text", async (req, res) => {
     try{
@@ -61,10 +61,13 @@ app.post("/process-text", async (req, res) => {
             console.error("Invalid JSON format:", response.choices[0].message.content);
             return res.status(500).json({ error: "OpenAI returned invalid JSON", rawResponse: response.choices[0].message.content });
         }
-
+        res.json({ extractedData: structuredData });
+        
     }
     catch (error){
         console.error("Error processing text:", error);
         res.status(500).json({ error: "Failed to process text" });
     }
 });
+
+app.listen(port, () => console.log(`server running on http://localhost:${port}`));
