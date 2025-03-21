@@ -6,7 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+ 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -45,9 +45,11 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  transition: background-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #66bb6a;
+
 }
 button:focus,
 button:focus-visible {
